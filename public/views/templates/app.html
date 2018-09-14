@@ -1,0 +1,101 @@
+<div class="profile-header text-center glass">
+  <div class="container-fluid">
+    <div class="container-inner">
+      <img class="img-circle media-object" src="{{data.details.artworkUrl100}}">
+      <h3 class="profile-header-user">{{data.app_name}} <span class="icon icon-app-store"></span></h3>
+    </div>
+  </div>
+  <nav class="profile-header-nav">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">About</a></li>
+      <li class="item"><a href="" title="">Comments</a></li>
+      <li></li>
+    </ul>
+  </nav>
+</div>
+<ul class="list-group media-list media-list-stream">
+  <li class="media list-group-item p-a">
+    <a class="media-left" href="/#/">
+      <img
+        class="media-object img-circle"
+        ng-src="{{data.details.artworkUrl60}}">
+    </a>
+    <div class="media-body">
+      <div class="media-heading">
+        <h5 class="pull-right text-muted m-b-0">Release Date: {{data.details.releaseDate | date}}</h5>
+        <h4 class="">{{data.app_name}}</h4>
+        <h5 class="text-muted pull-right">Price: {{data.price | currency}}</h5>
+        <!-- <h5 class="text-muted ">Average User Rating: {{data.average_user_rating}}</h5> -->
+        <star-rating ng-model="data.average_user_rating"></star-rating>
+      </div>
+    </div>
+  </li>
+
+  <li class="media list-group-item p-a">
+    <div class="media-body">
+      <p>
+        {{data.details.description}}
+      </p>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          Primary Genre: {{data.primary_genre}}
+        </li>
+        <li class="list-group-item">
+          Genres:
+          <ul class="inline">
+            <li ng-repeat="genre in data.genres track by $index">{{genre}}</li>
+          </ul>
+        </li>
+        <li class="list-group-item">
+          languages:
+          <ul>
+            <li ng-repeat="item in data.language_code track by $index">{{item}}</li>
+          </ul>
+        </li>
+        <li class="list-group-item">
+          Recomended Age Group: {{data.age_rating}}
+        </li>
+        <li class="list-group-item">
+          Studio: {{ data.details.artistName}}
+        </li>
+        <li class="list-group-item">
+          Current Version Release Date : {{ data.current_version_release_date | date}}
+        </li>
+        <li class="list-group-item">
+          Current Version Rating: {{data.average_user_recent_rating}}
+        </li>
+        <li class="list-group-item">
+          Features:
+          <ul>
+            <li ng-repeat="item in data.features">{{item}}</li>
+          </ul>
+        </li>
+        <li class="list-group-item">
+        Supported Devices:
+          <ul class="inline">
+            <li ng-repeat="item in data.supported_devices track by $index">{{item}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+      <div class="container-fluid">
+        <div class="media-body">
+          
+        </div>
+      </div>
+    <li class="media list-group-item p-a">
+      <h4 class="">Photos</h4>
+    </li>
+    <li class="media list-group-item p-a">
+      <div class="media-body">
+        <div class="row">
+          <div ng-repeat="pic in data.details.ipadScreenshotUrls | limitTo: 4">
+            <div class="col-md-3">
+              <img data-action="zoom" width="100%" height="100%" src="{{pic}}">
+            </div>
+          </div>
+        </div>
+      </div>   
+    </li>
+</ul>

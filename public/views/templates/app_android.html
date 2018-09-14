@@ -1,0 +1,83 @@
+<div class="profile-header text-center glass">
+  <div class="container-fluid">
+    <div class="container-inner">
+      <img class="media-object" src="{{data.icon}}" />
+      <h3 class="profile-header-user">{{data.title}}</h3>
+    </div>
+  </div>
+  <nav class="profile-header-nav">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">About</a></li>
+      <li class="item"><a href="" title="">Favorites</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="container-fluid m-t">
+  <ul class="list-group media-list media-list-stream">
+  <li class="media list-group-item p-a">
+    <a class="media-left" href="/#/">
+      <img
+        class="media-object"
+        ng-src="{{data.icon}}" />
+    </a>
+    <div class="media-body">
+      <div class="media-heading">
+        <h5 class="pull-right text-muted m-b-0">Updated: {{ ::data.updated | date }}</h5>
+        <h4 class="">{{ ::data.title }}</h4>
+        <h5 class="text-muted pull-right">Price: {{ ::data.price | currency}}</h5>
+        <h5 class="text-muted ">Average User Rating: {{ ::data.score}}</h5>
+        <star-rating ng-model="data.average_user_rating"></star-rating>
+      </div>
+    </div>
+  </li>
+
+  <li class="media list-group-item p-a">
+    <div class="media-body">
+      <div ng-bind-html="data.descriptionHTML  | trustAsHtml">
+        {{ ::data.descriptionHTML }}
+      </div>
+      
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          Primary Genre: {{::data.genre}}
+        </li>
+        <li class="list-group-item">
+          Recomended Age Group: {{::data.contentRating}}
+        </li>
+        <li class="list-group-item">
+          Studio: {{ ::data.developer}}
+        </li>
+        <li class="list-group-item">
+          Current Version Release Date : {{ ::data.updated | date}}
+        </li>
+        <li class="list-group-item">
+          Current Version Rating: {{ ::data.average_user_recent_rating }}
+        </li>
+        <li class="list-group-item">
+          Recent Changes:
+          <ul>
+            <li ng-repeat="item in ::data.recentChanges">{{::item}}</li>
+          </ul>
+        </li>
+        <li class="list-group-item">
+          Supported Android Version: Version {{ ::data.androidVersionText }}
+        </li>
+      </ul>
+    </div>
+    <li class="media list-group-item p-a">
+      <h4 class="">Photos</h4>
+    </li>
+    <li class="media list-group-item p-a">
+      <div class="media-body">
+        <div class="row">
+          <div ng-repeat="pic in data.screenshots | limitTo: 4">
+            <div class="col-md-3">
+              <img data-action="zoom" width="100%" ng-src="http://{{pic}}">
+            </div>
+          </div>
+        </div>
+      </div>   
+    </li>
+</ul>
+</div>

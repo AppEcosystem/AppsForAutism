@@ -1,0 +1,58 @@
+<div class="container-fluid m-t">
+  <ul class="list-group media-list media-list-stream" ng-show="!loading">
+    <li class="media list-group-item p-y">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="apple" ng-click="platformState('google')" ng-value="true">
+            <p><span class="icon icon-google-play"></span> Google Play</p>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="google" ng-click="platformState('apple')" ng-value="true">
+            <p><span class="icon icon-app-store"></span> Itunes Store</p>
+          </label>
+        </div>
+    </li>
+
+    <li class="media list-group-item p-a">
+      <form ng-submit="fts(platform, search)"> 
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="search" />
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+              <span class="icon icon-direction"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+
+    <li class="media list-group-item p-a">
+      <div class="checkbox-inline custom-control custom-checkbox" ng-repeat="genre in genreGroup">
+        <label>
+          <input type="checkbox" ng-click="filterState()" ng-model="genres[genre]">
+          <span class="custom-control-indicator"></span>
+          {{genre}} ({{(filteredData | filter: genre).length}})
+        </label>
+      </div>
+    </li>
+
+    <li class="media list-group-item p-a" data-ng-repeat="item in filteredData">
+      <a class="media-left" href="#">
+        <img class="media-object img-circle" ng-src="{{item.icon}}">
+      </a>
+      <div class="media-body">
+        <div class="media-heading">
+          <small class="pull-right text-muted">Release Date: {{item.updated | date}}</small>
+          <h5>{{item.title}}</h5>
+        </div>
+
+        <p>
+          {{item.summary | limitTo:155}}<small><a href="/#/app/{{item.id}}">read more</a></small>
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+
